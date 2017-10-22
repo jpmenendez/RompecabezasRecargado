@@ -1,3 +1,19 @@
+var Juego = {
+  cantidadDePiezasPorLado: 5,
+}
+
+var contador = 0;
+
+Juego.grilla = new Array(Juego.cantidadDePiezasPorLado); // Crea un array de longitud Juego.cantidadDePiezasPorLado
+Juego.crearGrilla = function(){
+  for (var i = 0; i < this.cantidadDePiezasPorLado; i++) {
+    this.grilla[i] = new Array(this.cantidadDePiezasPorLado); // Define cada elemento como una array de longitud Juego.cantidadDePiezasPorLado
+    for (var j = 0; j < this.cantidadDePiezasPorLado; j++) {
+      this.grilla[i][j] = contador + 1;
+      contador += 1;
+    }
+  }
+}
 
 // Representación de la grilla. Cada nro representa a una pieza.
 // El 9 es la posición vacía
