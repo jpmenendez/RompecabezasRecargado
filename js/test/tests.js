@@ -8,7 +8,7 @@ describe('Juego', function() {
       if (!window.Juego){
         done(err);
       }
-      else{ 
+      else{
         done();
       }
     });
@@ -25,3 +25,25 @@ describe('Tamaño de la grilla', function() {
     });
   });
 });
+
+
+describe('Posición Válida', function(){
+  it('Chequea si la posición está dentro de la grilla', function(){
+    expect(Juego.posicionValida(Juego.cantidadDePiezasPorLado - 1,0)).to.be.true;
+    expect(Juego.posicionValida(0,Juego.cantidadDePiezasPorLado - 1)).to.be.true;
+    expect(Juego.posicionValida(0,0)).to.be.true;
+    expect(Juego.posicionValida(Juego.cantidadDePiezasPorLado,0)).to.be.false;
+    expect(Juego.posicionValida(0,Juego.cantidadDePiezasPorLado)).to.be.false;
+    expect(Juego.posicionValida(-1,0)).to.be.false;
+    expect(Juego.posicionValida(0,-1)).to.be.false;
+
+  })
+})
+
+
+describe('Chequear si ganó', function(){
+  it('Chequea si el rompecabezas está en la posición ganadora sin haber mezclado las piezas', function(){
+    expect(Juego.chequearSiGano()).to.be.true;
+
+  })
+})
