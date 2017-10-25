@@ -9,10 +9,12 @@ var Juego = {
 }
 
 
-var contador = 0;
+
 // Crea la grilla según la cantidadDePiezasPorLado que tenga el rompecabezas
 Juego.grilla = new Array(Juego.cantidadDePiezasPorLado); // Crea un array de longitud Juego.cantidadDePiezasPorLado
+
 Juego.crearGrilla = function(){
+  var contador = 0;
   for (var i = 0; i < this.cantidadDePiezasPorLado; i++) {
     this.grilla[i] = new Array(this.cantidadDePiezasPorLado); // Define cada elemento como una array de longitud Juego.cantidadDePiezasPorLado
     for (var j = 0; j < this.cantidadDePiezasPorLado; j++) {
@@ -20,7 +22,6 @@ Juego.crearGrilla = function(){
       contador += 1;
     }
   }
-  contador = 0;
 }
 
 
@@ -114,17 +115,6 @@ Juego.moverEnDireccion = function (direccion){
 
 }
 
-// Mezcla las piezas
-Juego.mezclarPiezas = function(veces){
-  if(veces<=0){return;}
-  var direcciones = [40, 38, 39, 37];
-  var direccion = direcciones[Math.floor(Math.random()*direcciones.length)];
-  this.moverEnDireccion(direccion);
-
-  setTimeout(function(){
-    Juego.mezclarPiezas(veces-1);
-  },100);
-}
 
 //Obtiene la tecla presionada y muestra el cartel si el rompecabezas está armado
 Juego.capturarTeclas = function(){
@@ -141,6 +131,18 @@ Juego.capturarTeclas = function(){
       evento.preventDefault();
     }
   })
+}
+
+// Mezcla las piezas
+Juego.mezclarPiezas = function(veces){
+  if(veces<=0){return;}
+  var direcciones = [40, 38, 39, 37];
+  var direccion = direcciones[Math.floor(Math.random()*direcciones.length)];
+  this.moverEnDireccion(direccion);
+
+  setTimeout(function(){
+    Juego.mezclarPiezas(veces-1);
+  },100);
 }
 
 // Inicia el juego mezclando las piezas
